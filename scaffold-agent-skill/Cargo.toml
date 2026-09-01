@@ -2,6 +2,15 @@
 name = "scaffold-agent-skill"
 version = "0.1.0"
 edition = "2024"
+description = "Single-command CLI that scaffolds a new agent skill directory: a SKILL.md with validated frontmatter, standard subdirectories, an evals suite, and an optional Python test harness."
+license = "MIT"
+repository = "https://github.com/dunlopWill/scaffold-agent-skill"
+homepage = "https://github.com/dunlopWill/scaffold-agent-skill"
+documentation = "https://docs.rs/scaffold-agent-skill"
+readme = "README.md"
+keywords = ["cli", "scaffold", "skill", "agent-skills", "generator"]
+categories = ["command-line-utilities", "development-tools"]
+include = ["/src", "/tests", "/Cargo.toml", "/README.md", "/LICENSE"]
 
 [dependencies]
 clap = { version = "4.5", features = ["derive"] }
