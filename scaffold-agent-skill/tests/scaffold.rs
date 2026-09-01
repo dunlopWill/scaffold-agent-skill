@@ -173,7 +173,11 @@ fn generates_python_project() {
     // Starter script + test, .gitignore, and the SKILL.md scripts section.
     let example = root.join("scripts/example.py");
     assert!(example.is_file());
-    assert!(fs::read_to_string(&example).unwrap().contains("# /// script"));
+    assert!(
+        fs::read_to_string(&example)
+            .unwrap()
+            .contains("# /// script")
+    );
     assert!(root.join("tests/test_skill.py").is_file());
     assert!(root.join(".gitignore").is_file());
 
@@ -273,7 +277,10 @@ fn rejects_invalid_name_before_touching_disk() {
         ..opts_in(&tmp)
     };
 
-    assert!(matches!(scaffold(&opts), Err(ScaffoldError::InvalidName(_))));
+    assert!(matches!(
+        scaffold(&opts),
+        Err(ScaffoldError::InvalidName(_))
+    ));
     assert!(!tmp.exists());
 }
 
