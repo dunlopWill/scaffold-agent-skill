@@ -1,0 +1,14 @@
+# This project is a Rust crate; this file only pins the docs toolchain (zensical).
+# Run the docs with `uv run zensical serve` / `uv run zensical build`.
+
+[project]
+name = "scaffold-agent-skill-docs"
+version = "0"
+requires-python = ">=3.11"
+dependencies = []
+
+[dependency-groups]
+dev = ["zensical>=0.0.57"]
+
+[tool.uv]
+package = false

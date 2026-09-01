@@ -4,12 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-A single-command CLI (`scaffold-agent-skill`) that lays down a new Claude Code
+A single-command CLI (`scaffold-agent-skill`) that lays down a new
 *agent skill* directory: a `SKILL.md` with validated frontmatter, a set of
 subdirectories, an `evals/` suite, and optionally a Python test-harness project
-and a sibling scratch workspace. The generated files encode Anthropic's skill
-authoring conventions, so **the template strings in `src/skill.rs` are the real
-product** — changing them changes what every scaffolded skill looks like.
+and a sibling scratch workspace. The generated files encode the
+[Agent Skills](https://agentskills.io/specification) authoring conventions, so
+**the template strings in `src/skill.rs` are the real product** — changing them
+changes what every scaffolded skill looks like.
+
+The Rust crate lives at the repo root's `scaffold-agent-skill/` subdirectory
+(the git repo root is one level up). A `docs/` site built with Zensical sits
+alongside the crate in the same directory.
 
 ## Commands
 
@@ -23,8 +28,21 @@ cargo clippy --all-targets        # lint
 cargo fmt                         # format
 ```
 
-There is no CI config, no external test framework, and no non-`std` runtime
-dependency beyond `clap`.
+The only runtime dependency is `clap`; there is no external Rust test framework.
+
+### Docs
+
+```bash
+uv run zensical serve             # live preview of docs/ at http://localhost:8000
+uv run zensical build             # render to site/ (gitignored build output)
+```
+
+`pyproject.toml` / `uv.lock` / `.python-version` exist **only** to pin the
+Zensical toolchain (`[tool.uv] package = false` — this is not a Python package).
+Prose lives in `docs/`, site config in `zensical.toml`;
+`docs/scaffolding-a-skill.md` is the CLI reference page and should be updated
+when flags change. `.github/workflows/docs.yml` builds and deploys the site to
+GitHub Pages on push to `master`/`main` (the working branch is `dev`).
 
 ## Architecture
 
